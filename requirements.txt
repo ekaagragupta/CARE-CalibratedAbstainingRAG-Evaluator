@@ -1,45 +1,45 @@
 # LLM Providers
-openai>=1.107.0
-groq>=0.31.0
-google-genai>=1.30.0
+openai
+groq
+google-genai
 
 # Environment Variables
-python-dotenv>=1.1.1
+python-dotenv
 
 # LangChain
-langchain>=0.3.27
-langchain-core>=0.3.75
-langchain-community>=0.3.27
-langchain-openai>=0.3.32
-langchain-google-genai>=2.1.9
-langchain-text-splitters>=0.3.9
+langchain
+langchain-core
+langchain-community
+langchain-openai
+langchain-google-genai
+langchain-text-splitters
 
-# RAG
-faiss-cpu>=1.12.0
-chromadb>=1.0.20
+# RAG & Vector Databases
+faiss-cpu
+chromadb
 
-# Embeddings
-sentence-transformers>=5.1.0
-transformers>=4.56.0
-torch>=2.8.0
+# Embeddings & Transformers
+sentence-transformers
+transformers
+torch
 
 # Tokenization
-tiktoken>=0.11.0
+tiktoken
 
-# Data
-numpy>=2.3.2
-pandas>=2.3.2
+# Data Processing
+numpy
+pandas
 
-# Web/API
-requests>=2.32.5
-httpx>=0.28.1
-aiohttp>=3.12.15
+# HTTP Requests
+requests
+httpx
+aiohttp
 
 # Utilities
-tqdm>=4.67.1
-pydantic>=2.11.7
-rich>=14.1.0
+tqdm
+pydantic
+rich
 
-# Notebook (optional)
+# Jupyter (Optional)
 jupyter
 ipykernel
