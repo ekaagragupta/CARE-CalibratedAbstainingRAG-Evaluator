@@ -1,10 +1,10 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain_groq import ChatGroq
+from langchain.chat_models import init_chat_model
 
-model = ChatGroq(
-    model="llama-3.3-70b-versatile"
+model = init_chat_model(
+    model="openai/gpt-oss-120b",
 )
 
 response = model.invoke("Hello! Tell me a fun fact.")
