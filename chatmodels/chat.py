@@ -1,12 +1,13 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain.chat_models import init_chat_model
+from langchain_groq import ChatGroq
 
-model = init_chat_model(
-    model="grok:openai/gpt-oss-120b",
+model = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    temperature=0
 )
 
-response = model.invoke("Hello! Tell me a fun fact.")
+response = model.invoke("write a poem on mom")
 
 print(response.content)
