@@ -1,14 +1,13 @@
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain_groq import ChatGroq
+from langchain_huggingface import HuggingFaceEmbeddings
 
-model = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    temperature=0.9,
-    max_tokens=20
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-mpnet-base-v2",
+    encode_kwargs={"normalize_embeddings": True},
 )
 
-response = model.invoke("write a poem on mom")
+response =embeddings.invoke("write a poem on mom")
 
 print(response.content)
