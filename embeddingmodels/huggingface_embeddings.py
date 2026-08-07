@@ -12,4 +12,4 @@ text=[
 ]
 
 vector=HuggingFaceEmbeddings.embed_documents(text)
-print(len(vector))
+print(vector)
