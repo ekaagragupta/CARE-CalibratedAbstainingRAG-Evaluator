@@ -13,5 +13,6 @@ llm=HuggingFaceEndpoint(
 )
 model=ChatHuggingFace(llm=llm)
 
-response=model.invoke("What is the capital of France?")
-print(response.content)
+prompt=input("you:")
+response=model.invoke(prompt)
+print("bot",response.content)
