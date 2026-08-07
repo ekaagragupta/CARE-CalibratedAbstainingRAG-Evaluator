@@ -1,15 +1,14 @@
+import os
+
 from dotenv import load_dotenv
 load_dotenv()
 
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-mpnet-base-v2",
-    encode_kwargs={"normalize_embeddings": True},
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "hf_..."
+
+llm=HuggingFaceEndpoint(
+    repo_id="deepseek-ai/DeepSeek-R1",
     temperature=0.7,
-    max_output_tokens=256,
 )
-
-response =embeddings.invoke("write a poem on mom")
-
-print(response.content)
+model=ChatHuggingFace(llm=llm)
