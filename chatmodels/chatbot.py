@@ -12,10 +12,13 @@ llm=HuggingFaceEndpoint(
     temperature=0.7
 )
 model=ChatHuggingFace(llm=llm)
+messages=[]
 while True:
     print("---------welcome to chat bot---------")
     prompt=input("you:")
+    messages.append(prompt)
     if(prompt=="0"):
         break
     response=model.invoke(prompt)
+    messages.append(response.content)
     print("bot",response.content)
