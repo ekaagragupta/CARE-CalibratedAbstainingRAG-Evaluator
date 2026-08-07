@@ -1,6 +1,5 @@
 import os
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "hf_xxxxxxxxxxxxxxxxx"
-from urllib import response
+os.environ["HUGGINGFACE_API_TOKEN"] = "hf_xxxxxxxxxxxxxxxxx"
 
 from dotenv import load_dotenv
 load_dotenv()
