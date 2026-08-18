@@ -1,0 +1,85 @@
+## Step 1: Dataset Selection + Building the Base Retrieval Index
+
+### Why dataset choice is the first decision (not an afterthought)
+For a *calibrated, abstaining* RAG system, you need a dataset where some questions are genuinely answerable from the corpus and others genuinely are **not** — otherwise you have no ground truth to check whether your system correctly abstained. This is a detail almost no student thinks about, and it's a great thing to flag proactively in an interview.
+
+**I'm choosing SQuAD 2.0** for this. Here's the reasoning, which you should be able to state confidently:
+- It's a well-known, respected benchmark (interviewers will recognize it — good, not a red flag).
+- Critically, it was built *specifically* to test the "knows what it doesn't know" property: ~1/3 of its questions are **unanswerable** from the given passage, written by humans to look plausible (they're not random noise — they're adversarially close to answerable questions).
+- It gives you clean ground truth: for every question you know (a) the correct answer if answerable, (b) whether it's answerable at all. That's exactly what you need to *measure* calibration quality later, not just build a demo.
+
+**Trade-off to be upfront about:** SQuAD 2.0 is single-document QA (one passage per question), which is easier than realistic multi-document retrieval. For our purposes that's fine — we're proving the *calibration methodology* works, not building a production search engine. If asked "why not a harder multi-hop dataset," your answer is: "I deliberately isolated the calibration problem from the retrieval-difficulty problem so I could validate one thing rigorously rather than confounding two hard problems at once." That's a mature answer.
+
+---
+
+### The technologies for this step, and why each one
+
+| Tool | What it does | Why this one, specifically |
+|---|---|---|
+| `sentence-transformers` | Turns text into dense vector embeddings | Industry-standard library (built on HuggingFace transformers); gives you well-pretrained models without training your own |
+| `all-MiniLM-L6-v2` (the model) | The actual embedding model | 384-dimensional output, ~80MB, runs fast on CPU (this is your no-GPU constraint solved) — it's a distilled model, meaning it's compressed from a larger one to keep quality while cutting compute cost. You should know that word — "distilled" — for interviews. |
+| `faiss-cpu` (Facebook AI Similarity Search) | Stores vectors and does fast nearest-neighbor search | The standard vector index library; CPU build means no GPU dependency. `IndexFlatIP` (what we'll use) does *exact* search via inner product — no approximation, which matters because approximate indexes (like HNSW, which you already use at MNIT) introduce their own uncertainty that would contaminate our confidence signal. At this scale (a few thousand passages) exact search is fast enough anyway. |
+
+**Interview-ready line:** "I used exact search (`IndexFlatIP`) instead of an approximate index like HNSW deliberately — since this project's whole point is measuring retrieval confidence accurately, I didn't want index approximation error mixing into my confidence signal. That's a precision-vs-speed trade-off I made consciously, and it's justified because my corpus is small enough that exact search is still fast."
+
+---
+
+### The code for this step
+
+```python
+# step1_build_index.py
+
+from datasets import load_dataset
+from sentence_transformers import SentenceTransformer
+import faiss
+import numpy as np
+import pickle
+
+# --- 1. Load SQuAD 2.0 ---
+# 'validation' split has the answerable + unanswerable questions we need for evaluation later.
+dataset = load_dataset("squad_v2", split="validation")
+
+# Each SQuAD example has a 'context' (the passage). Many questions share the same context.
+# We deduplicate contexts to build our retrieval corpus — this IS our document collection.
+contexts = list(set(dataset["context"]))
+print(f"Unique passages in corpus: {len(contexts)}")
+
+# --- 2. Load the embedding model ---
+# device='cpu' is explicit here — no GPU dependency, confirming our constraint.
+model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
+
+# --- 3. Embed all passages ---
+# normalize_embeddings=True is important: it makes inner product equivalent to cosine similarity.
+# This matters because IndexFlatIP computes raw inner product, not cosine — normalizing first
+# is what makes that mathematically correct, not just a default setting to leave alone.
+embeddings = model.encode(
+    contexts,
+    batch_size=32,
+    show_progress_bar=True,
+    normalize_embeddings=True
+)
+embeddings = np.array(embeddings).astype("float32")
+
+# --- 4. Build the FAISS index ---
+dimension = embeddings.shape[1]  # 384 for this model
+index = faiss.IndexFlatIP(dimension)  # IP = Inner Product = cosine similarity (since normalized)
+index.add(embeddings)
+
+print(f"FAISS index built with {index.ntotal} vectors of dimension {dimension}")
+
+# --- 5. Save everything so later steps don't have to recompute ---
+faiss.write_index(index, "corpus_index.faiss")
+with open("contexts.pkl", "wb") as f:
+    pickle.dump(contexts, f)
+```
+
+**What each part is *for*, in plain terms you can say out loud:**
+- The dataset load + dedup gives us our "knowledge base" — the documents the system will search over.
+- The embedding step converts every passage into a 384-number vector such that semantically similar passages end up close together in that 384-dimensional space.
+- `normalize_embeddings=True` is the detail I'd bet an interviewer probes — be ready to explain *why* normalization + inner product = cosine similarity (it's a one-line math fact: cosine similarity is just the dot product of two unit vectors).
+- The FAISS index is what lets us later ask "given this query vector, what are the k closest passage vectors?" in milliseconds instead of comparing against every passage manually.
+- We save the index and the contexts to disk so we don't re-embed thousands of passages every time we run a later step — a basic but real engineering practice.
+
+---
+
+Does this make sense — particularly *why* SQuAD 2.0 was the deliberate choice (not just "a dataset"), and *why* exact search over approximate search here? Once you're solid on this, Step 2 is where we build the actual query → retrieval function and start looking at the raw similarity scores — the first of our three confidence signals.
