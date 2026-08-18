@@ -8,48 +8,50 @@ What's more informative is the relative structure of the score distribution:
 If the top result scores much higher than the 2nd, 3rd, 4th results → there's a clear "winner," meaning the corpus likely contains a passage that specifically addresses this query. High confidence.
 If the top few results all score roughly the same → the retriever can't clearly distinguish what's relevant, either because the corpus lacks a good match, or the query is ambiguous, or several passages are plausibly relevant. Low confidence.
 """
+# step2_retrieval.py
 
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 import pickle
 
-model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')
+# --- Load what Step 1 built ---
+model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
 index = faiss.read_index("corpus_index.faiss")
 with open("contexts.pkl", "rb") as f:
     contexts = pickle.load(f)
 
-def retrieve(query,topK=5):
+
+def retrieve(query, k=5):
     """
-    Embed a query, search the FAISS index and return :
+    Embeds a query, searches the FAISS index, and returns:
     - the top-k passages
     - their similarity scores
-    - a normalised 'score gap'  of confidence signal
+    - a normalized 'score gap' confidence signal
     """
-    query_vec=model.encode(
-        [query],
-        normalize_embeddings=True    #cosine similarity breaks
-    ).astype("float32")
+    # Same normalize_embeddings=True as Step 1 — MUST match, or cosine similarity breaks.
+    query_vec = model.encode([query], normalize_embeddings=True).astype("float32")
 
-    # faiss search return scores and their indices in the original corpus
-    scores,indices=index.search(query_vec,topK)
-    scores=scores[0]
-    indices=indices[0]
+    # FAISS search returns (scores, indices) — both shape (1, k) since we passed 1 query.
+    scores, indices = index.search(query_vec, k)
+    scores = scores[0]      # unwrap to shape (k,)
+    indices = indices[0]
 
-    # get the top-k passages
-    retrieved_passages=[contexts[i] for i in indices]
+    retrieved_passages = [contexts[i] for i in indices]
 
-    # compute a normalised 'score gap' confidence signal
-    if len(scores)>=2 and scores[0]>0:
-        score_gap=(scores[0]-scores[1])/scores[0]
-    else:   
-        score_gap=0.0
+    # --- Confidence Signal #1: normalized score gap between top-1 and top-2 ---
+    if len(scores) >= 2 and scores[0] > 0:
+        score_gap = (scores[0] - scores[1]) / scores[0]
+    else:
+        score_gap = 0.0  # can't compute a gap with fewer than 2 results
+
     return {
         "query": query,
         "passages": retrieved_passages,
         "scores": scores.tolist(),
         "retrieval_confidence": float(score_gap)
-    }    
+    }
+
 
 # --- Quick sanity check ---
 if __name__ == "__main__":
@@ -57,3 +59,10 @@ if __name__ == "__main__":
     print(f"Retrieval confidence (score gap): {result['retrieval_confidence']:.3f}")
     print(f"Top score: {result['scores'][0]:.3f}, 2nd score: {result['scores'][1]:.3f}")
     print(f"Top passage: {result['passages'][0][:200]}...")
+
+# output of the sanity check:
+    """
+    Retrieval confidence (score gap): 0.184
+Top score: 0.455, 2nd score: 0.371
+Top passage: Montpellier was among the most important of the 66 "villes de sûreté" that the Edict of 1598 granted to the Huguenots. The city's political institutions and the university were all handed 
+"""

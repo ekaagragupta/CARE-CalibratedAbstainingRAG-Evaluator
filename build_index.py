@@ -4,6 +4,8 @@ import faiss
 import numpy as np
 import pickle
 
+from retrieval import retrieve
+
 # laoding sQuad dataset - validation split has answerable and unanswerable questions
 dataset = load_dataset("squad_v2",split="validation")
 
@@ -38,3 +40,8 @@ print(f"Number of passages in the index: {index.ntotal} vectors of dimension {di
 faiss.write_index(index,"corpus_index.faiss")
 with open("contexts.pkl", "wb") as f:
     pickle.dump(contexts, f)
+
+# Pull a real question + confirm its context is in our corpus
+sample = dataset[0]  # dataset from build_index.py — reuse it, don't reload
+print("Sample question:", sample["question"])
+print("Is its context in our corpus?", sample["context"] in contexts)
