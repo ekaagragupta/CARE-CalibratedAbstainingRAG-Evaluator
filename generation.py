@@ -12,31 +12,24 @@ client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
 MODEL_NAME = "openai/gpt-oss-20b"
 
-
 def generate_answer(query, context_passage, temperature=0.7):
-    """
-    Asks the LLM to answer the query using ONLY the given passage as context.
-    temperature > 0 introduces randomness — necessary for self-consistency
-    sampling to produce genuinely different answers across calls.
-    """
     prompt = f"""Answer the question using ONLY the information in the passage below.
-If the passage does not contain the answer, say "I cannot answer this from the given passage."
-Keep your answer short — a few words or one sentence, no explanation.
+    If the passage does not contain the answer, say "I cannot answer this from the given passage."
+    Keep your answer short — a few words or one sentence, no explanation.
 
-Passage: {context_passage}
+    Passage: {context_passage}
 
-Question: {query}
+    Question: {query}
 
-Answer:"""
+    Answer:"""
 
     response = client.chat.completions.create(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
         temperature=temperature,
-        max_tokens=50,
+        max_tokens=300,   # raised from 50 — gives room for reasoning tokens + the actual answer
     )
     return response.choices[0].message.content.strip()
-
 
 def normalize_answer(text):
     """
