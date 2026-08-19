@@ -1,0 +1,93 @@
+# step4_generation.py
+
+import os
+import re
+from collections import Counter
+from groq import Groq
+from retrieval import retrieve
+from reranker import rerank  # adjust import name to match your Step 3 filename
+
+client = Groq(api_key=os.environ["GROQ_API_KEY"])
+
+MODEL_NAME = "llama-3.1-8b-instant"  # small, fast, cheap — fine for this task
+
+
+def generate_answer(query, context_passage, temperature=0.7):
+    """
+    Asks the LLM to answer the query using ONLY the given passage as context.
+    temperature > 0 introduces randomness — necessary for self-consistency
+    sampling to produce genuinely different answers across calls.
+    """
+    prompt = f"""Answer the question using ONLY the information in the passage below.
+If the passage does not contain the answer, say "I cannot answer this from the given passage."
+Keep your answer short — a few words or one sentence, no explanation.
+
+Passage: {context_passage}
+
+Question: {query}
+
+Answer:"""
+
+    response = client.chat.completions.create(
+        model=MODEL_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=temperature,
+        max_tokens=50,
+    )
+    return response.choices[0].message.content.strip()
+
+
+def normalize_answer(text):
+    """
+    Standard QA-style normalization: lowercase, strip punctuation and
+    articles, collapse whitespace. This is the same normalization SQuAD's
+    own official evaluation script uses, so it's a well-established choice,
+    not something ad hoc.
+    """
+    text = text.lower()
+    text = re.sub(r"\b(a|an|the)\b", " ", text)
+    text = re.sub(r"[^\w\s]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def self_consistency_confidence(query, context_passage, n_samples=5):
+    """
+    Samples n_samples answers from the LLM at temperature > 0, normalizes
+    them, and returns the fraction that agree with the majority answer.
+    High agreement = high confidence; scattered answers = low confidence.
+    """
+    raw_answers = [generate_answer(query, context_passage) for _ in range(n_samples)]
+    normalized = [normalize_answer(a) for a in raw_answers]
+
+    counts = Counter(normalized)
+    majority_answer, majority_count = counts.most_common(1)[0]
+
+    consistency_score = majority_count / n_samples
+
+    return {
+        "raw_answers": raw_answers,
+        "majority_answer": majority_answer,
+        "consistency_confidence": consistency_score
+    }
+
+
+if __name__ == "__main__":
+    test_queries = [
+        "In what country is Normandy located?",
+        "What river runs through Paris?",
+        "What is the recommended dosage of ibuprofen for a dog?",
+        "purple elephant quantum sandwich Tuesday",
+    ]
+
+    for q in test_queries:
+        retrieval_result = retrieve(q, k=5)
+        top_passage = retrieval_result["passages"][0]  # use best-retrieved passage as context
+
+        result = self_consistency_confidence(q, top_passage, n_samples=5)
+
+        print(f"\nQuery: {q}")
+        print(f"Top passage used: {top_passage[:150]}...")
+        print(f"Raw answers: {result['raw_answers']}")
+        print(f"Majority answer: '{result['majority_answer']}'")
+        print(f"Self-consistency confidence: {result['consistency_confidence']:.2f}")
