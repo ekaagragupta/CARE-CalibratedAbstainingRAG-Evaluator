@@ -1,5 +1,3 @@
-# step4_generation.py
-
 import os
 import re
 from collections import Counter
