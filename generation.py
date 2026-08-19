@@ -84,3 +84,11 @@ if __name__ == "__main__":
         print(f"Raw answers: {result['raw_answers']}")
         print(f"Majority answer: '{result['majority_answer']}'")
         print(f"Self-consistency confidence: {result['consistency_confidence']:.2f}")
+
+
+        """
+        I found that self-consistency alone conflates two different kinds of certainty —
+          confidently right and confidently unable to answer. Combining it with retrieval
+          -side signals resolves the ambiguity: high consistency plus high retrieval confidence
+            means a trustworthy answer, while high consistency plus low retrieval confidence means 
+            the system is reliably recognizing when to abstain, which is the actual goal of this project."""
