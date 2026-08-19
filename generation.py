@@ -2,24 +2,20 @@
 
 import os
 import re
-from dotenv import load_dotenv
 from collections import Counter
+from dotenv import load_dotenv
 from groq import Groq
 from retrieval import retrieve
-from reranker import rerank  # adjust import name to match your Step 3 filename
 
 load_dotenv()
+
 client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
-MODEL_NAME = "llama-3.1-8b-instant"  # small, fast, cheap — fine for this task
 
-"""
-temperature 0 would make the model nearly deterministic, defeating the whole 
-point; we need some randomness to see if the model's answer is "forced" by strong 
-evidence or wanders when evidence is weak.
-"""
+MODEL_NAME = "openai/gpt-oss-20b"
 
-def generate_answer(query, context_passage, temperature=0.7):  
+
+def generate_answer(query, context_passage, temperature=0.7):
     """
     Asks the LLM to answer the query using ONLY the given passage as context.
     temperature > 0 introduces randomness — necessary for self-consistency
@@ -47,9 +43,8 @@ Answer:"""
 def normalize_answer(text):
     """
     Standard QA-style normalization: lowercase, strip punctuation and
-    articles, collapse whitespace. This is the same normalization SQuAD's
-    own official evaluation script uses, so it's a well-established choice,
-    not something ad hoc.
+    articles, collapse whitespace. Same normalization style SQuAD's own
+    official evaluation script uses.
     """
     text = text.lower()
     text = re.sub(r"\b(a|an|the)\b", " ", text)
@@ -89,7 +84,7 @@ if __name__ == "__main__":
 
     for q in test_queries:
         retrieval_result = retrieve(q, k=5)
-        top_passage = retrieval_result["passages"][0]  # use best-retrieved passage as context
+        top_passage = retrieval_result["passages"][0]
 
         result = self_consistency_confidence(q, top_passage, n_samples=5)
 
