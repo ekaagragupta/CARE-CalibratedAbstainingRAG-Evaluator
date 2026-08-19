@@ -2,17 +2,24 @@
 
 import os
 import re
+from dotenv import load_dotenv
 from collections import Counter
 from groq import Groq
 from retrieval import retrieve
 from reranker import rerank  # adjust import name to match your Step 3 filename
 
+load_dotenv()
 client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
 MODEL_NAME = "llama-3.1-8b-instant"  # small, fast, cheap — fine for this task
 
+"""
+temperature 0 would make the model nearly deterministic, defeating the whole 
+point; we need some randomness to see if the model's answer is "forced" by strong 
+evidence or wanders when evidence is weak.
+"""
 
-def generate_answer(query, context_passage, temperature=0.7):
+def generate_answer(query, context_passage, temperature=0.7):  
     """
     Asks the LLM to answer the query using ONLY the given passage as context.
     temperature > 0 introduces randomness — necessary for self-consistency
