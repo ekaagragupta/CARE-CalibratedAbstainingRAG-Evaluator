@@ -1,7 +1,7 @@
 ## Step 1: Dataset Selection + Building the Base Retrieval Index
 
 ### Why dataset choice is the first decision (not an afterthought)
-For a *calibrated, abstaining* RAG system, you need a dataset where some questions are genuinely answerable from the corpus and others genuinely are **not** — otherwise you have no ground truth to check whether your system correctly abstained. This is a detail almost no student thinks about, and it's a great thing to flag proactively in an interview.
+For a *calibrated, abstaining* RAG system, you need a dataset where some questions are genuinely answerable from the corpus and others genuinely are **not**
 
 **I'm choosing SQuAD 2.0** for this. Here's the reasoning, which you should be able to state confidently:
 - It's a well-known, respected benchmark (interviewers will recognize it — good, not a red flag).
