@@ -4,8 +4,6 @@ import faiss
 import numpy as np
 import pickle
 
-from retrieval import retrieve
-
 # laoding sQuad dataset - validation split has answerable and unanswerable questions
 dataset = load_dataset("squad_v2",split="validation")
 

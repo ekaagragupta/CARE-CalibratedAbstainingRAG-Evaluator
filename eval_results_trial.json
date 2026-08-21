@@ -1,0 +1,276 @@
+[
+  {
+    "question": "Where did Korea border Kublai's territory?",
+    "is_answerable": true,
+    "gold_answers": [
+      "northeast",
+      "northeast",
+      "the northeast"
+    ],
+    "system_answer": "northeast border",
+    "retrieval_confidence": 0.3799768090248108,
+    "rerank_confidence": 0.8744702168986148,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.6848156753078085,
+    "is_correct": true
+  },
+  {
+    "question": "What is Fe2O?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3306996487081051,
+    "rerank_confidence": 0.4561069299666544,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.5956021928915864,
+    "is_correct": true
+  },
+  {
+    "question": "What was Apple Talk ",
+    "is_answerable": true,
+    "gold_answers": [
+      "a proprietary suite of networking protocols developed by Apple Inc. in 1985",
+      "a proprietary suite of networking protocols developed by Apple Inc",
+      "proprietary suite of networking protocols"
+    ],
+    "system_answer": "appletalk was proprietary suite of networking protocols developed by apple inc in 1985 for apple macintosh computers",
+    "retrieval_confidence": 0.6069681942462921,
+    "rerank_confidence": 0.9991281316548393,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.668698775300377,
+    "is_correct": true
+  },
+  {
+    "question": "What was the very first television station to broadcast in Fresno?",
+    "is_answerable": true,
+    "gold_answers": [
+      "KMJ-TV",
+      "KMJ-TV",
+      "KMJ-TV"
+    ],
+    "system_answer": "kmjtv",
+    "retrieval_confidence": 0.3690607063472271,
+    "rerank_confidence": 0.905372245034727,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.758144317127318,
+    "is_correct": true
+  },
+  {
+    "question": "What must the adoption of laws which will have legal effect in the EU have?",
+    "is_answerable": true,
+    "gold_answers": [
+      "a proper legal basis",
+      "a proper legal basis",
+      "a proper legal basis"
+    ],
+    "system_answer": "proper legal basis",
+    "retrieval_confidence": 0.3009828208014369,
+    "rerank_confidence": 0.5223350571187423,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6077726259733931,
+    "is_correct": true
+  },
+  {
+    "question": "What was believed to be the cause of devastation to the civilization?",
+    "is_answerable": true,
+    "gold_answers": [
+      "diseases from Europe",
+      "the spread of diseases from Europe",
+      "spread of diseases from Europe"
+    ],
+    "system_answer": "spread of european diseases such as smallpox",
+    "retrieval_confidence": 0.22000331431627274,
+    "rerank_confidence": 0.339033745536014,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.38634568661742885,
+    "is_correct": false
+  },
+  {
+    "question": "What was the name of the first Huguenot outpost in South Carolina?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Charlesfort",
+      "Charlesfort",
+      "Charlesfort"
+    ],
+    "system_answer": "charlesfort",
+    "retrieval_confidence": 0.34492796659469604,
+    "rerank_confidence": 0.5430879295238952,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6293386320395304,
+    "is_correct": true
+  },
+  {
+    "question": "Besides the analytic property of Goldbach's conjecture, what other property of Goldbach's conjecture does number theory focus on?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "its algebraic aspect",
+    "retrieval_confidence": 0.33646923225023784,
+    "rerank_confidence": 0.5572295647212084,
+    "consistency_confidence": 0.2,
+    "combined_confidence": 0.3645662656571487,
+    "is_correct": false
+  },
+  {
+    "question": "What amount of the worlds carbon is stored in the Amazon forest?",
+    "is_answerable": true,
+    "gold_answers": [
+      "10% of the carbon stores",
+      "10%",
+      "10%"
+    ],
+    "system_answer": "11 10\u00b9\u00b9 metric tonnes of carbon",
+    "retrieval_confidence": 0.4795079454779625,
+    "rerank_confidence": 0.9270236217282877,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6688438557354166,
+    "is_correct": true
+  },
+  {
+    "question": "What alternative to ARPANET was developed? ",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "cyclades",
+    "retrieval_confidence": 0.3028954267501831,
+    "rerank_confidence": 0.6748188613946589,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.5259047627149472,
+    "is_correct": false
+  },
+  {
+    "question": "What was the purpose of the suite developed in 1985? ",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.2656121402978897,
+    "rerank_confidence": 0.26861362237777836,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.511408587558556,
+    "is_correct": true
+  },
+  {
+    "question": "Who lead the school back to leading research institution in 2oth century?",
+    "is_answerable": true,
+    "gold_answers": [
+      "James Bryant Conant",
+      "James Bryant Conant",
+      "James Bryant Conant"
+    ],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.2558967862278223,
+    "rerank_confidence": 0.24005063884848113,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.4986491416921011,
+    "is_correct": false
+  },
+  {
+    "question": "Which of the tributaries in Germany contributes most? ",
+    "is_answerable": true,
+    "gold_answers": [
+      "Moselle",
+      "Neckar",
+      "Neckar"
+    ],
+    "system_answer": "moselle",
+    "retrieval_confidence": 0.29549090284854174,
+    "rerank_confidence": 0.839601908737563,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7116976038620348,
+    "is_correct": true
+  },
+  {
+    "question": "The French and Indian War was the New World aspect of what European conflict?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Seven Years' War",
+      "Seven Years' War",
+      "Seven Years' War"
+    ],
+    "system_answer": "seven years war",
+    "retrieval_confidence": 0.4468098059296608,
+    "rerank_confidence": 0.6021847429884437,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6829981829727014,
+    "is_correct": true
+  },
+  {
+    "question": "What grew on a global scale as a result of imperialism?",
+    "is_answerable": true,
+    "gold_answers": [
+      "the world's economy",
+      "economy",
+      "economy",
+      "world's economy",
+      "world's economy"
+    ],
+    "system_answer": "technologies and ideas",
+    "retrieval_confidence": 0.36748943105340004,
+    "rerank_confidence": 0.4003326210655055,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.5892740173729685,
+    "is_correct": false
+  },
+  {
+    "question": "The idea that Islam can be apolitical isn't able to be embraced by whom?",
+    "is_answerable": true,
+    "gold_answers": [
+      "its supporters",
+      "Scholars and observers",
+      "Islamism"
+    ],
+    "system_answer": "",
+    "retrieval_confidence": 0.3913949504494667,
+    "rerank_confidence": 0.5494667150016975,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.4469538884837214,
+    "is_correct": false
+  },
+  {
+    "question": "What is operated by Academic Colleges Group in Wanganui?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3928654193878174,
+    "rerank_confidence": 0.9972672757280465,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7967108983719546,
+    "is_correct": true
+  },
+  {
+    "question": "What is the weight of a bushel of engines in pounds?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.24503796640783548,
+    "rerank_confidence": 0.6909771600821188,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6453383754966514,
+    "is_correct": true
+  },
+  {
+    "question": "What is the problem attributed to defining if two finite graphs are isomorphic?",
+    "is_answerable": true,
+    "gold_answers": [
+      "The graph isomorphism problem",
+      "graph isomorphism",
+      "The graph isomorphism problem"
+    ],
+    "system_answer": "graph isomorphism problem",
+    "retrieval_confidence": 0.5882347226142883,
+    "rerank_confidence": 0.5783831255962891,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7222059494035258,
+    "is_correct": true
+  },
+  {
+    "question": "What is the United State's second-busiest commercial port?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.4766608774662018,
+    "rerank_confidence": 0.5094968865157208,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6620525879939742,
+    "is_correct": true
+  }
+]
