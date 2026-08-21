@@ -108,4 +108,4 @@ def run_eval(n_questions=200, eval_set_path="eval_set.json", output_path="eval_r
 
 
 if __name__ == "__main__":
-    run_eval(n_questions=20, output_path="eval_results_trial.json")
+    run_eval(n_questions=200, eval_set_path="eval_set.json", output_path="eval_results.json")

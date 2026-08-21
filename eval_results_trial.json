@@ -7,11 +7,11 @@
       "northeast",
       "the northeast"
     ],
-    "system_answer": "northeast border",
+    "system_answer": "northeast",
     "retrieval_confidence": 0.3799768090248108,
     "rerank_confidence": 0.8744702168986148,
-    "consistency_confidence": 0.8,
-    "combined_confidence": 0.6848156753078085,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.5514823419744752,
     "is_correct": true
   },
   {
@@ -33,7 +33,7 @@
       "a proprietary suite of networking protocols developed by Apple Inc",
       "proprietary suite of networking protocols"
     ],
-    "system_answer": "appletalk was proprietary suite of networking protocols developed by apple inc in 1985 for apple macintosh computers",
+    "system_answer": "appletalk was proprietary suite of networking protocols developed by apple inc in 1985 for macintosh computers",
     "retrieval_confidence": 0.6069681942462921,
     "rerank_confidence": 0.9991281316548393,
     "consistency_confidence": 0.4,
@@ -78,12 +78,12 @@
       "the spread of diseases from Europe",
       "spread of diseases from Europe"
     ],
-    "system_answer": "spread of european diseases such as smallpox",
+    "system_answer": "spread of diseases from europe such as smallpox",
     "retrieval_confidence": 0.22000331431627274,
     "rerank_confidence": 0.339033745536014,
     "consistency_confidence": 0.6,
     "combined_confidence": 0.38634568661742885,
-    "is_correct": false
+    "is_correct": true
   },
   {
     "question": "What was the name of the first Huguenot outpost in South Carolina?",
@@ -104,11 +104,11 @@
     "question": "Besides the analytic property of Goldbach's conjecture, what other property of Goldbach's conjecture does number theory focus on?",
     "is_answerable": false,
     "gold_answers": [],
-    "system_answer": "its algebraic aspect",
+    "system_answer": "its algebraic aspects",
     "retrieval_confidence": 0.33646923225023784,
     "rerank_confidence": 0.5572295647212084,
-    "consistency_confidence": 0.2,
-    "combined_confidence": 0.3645662656571487,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.43123293232381543,
     "is_correct": false
   },
   {
@@ -122,8 +122,8 @@
     "system_answer": "11 10\u00b9\u00b9 metric tonnes of carbon",
     "retrieval_confidence": 0.4795079454779625,
     "rerank_confidence": 0.9270236217282877,
-    "consistency_confidence": 0.6,
-    "combined_confidence": 0.6688438557354166,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.8021771890687499,
     "is_correct": true
   },
   {
@@ -174,8 +174,8 @@
     "system_answer": "moselle",
     "retrieval_confidence": 0.29549090284854174,
     "rerank_confidence": 0.839601908737563,
-    "consistency_confidence": 1.0,
-    "combined_confidence": 0.7116976038620348,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.6450309371953682,
     "is_correct": true
   },
   {
@@ -206,8 +206,8 @@
     "system_answer": "technologies and ideas",
     "retrieval_confidence": 0.36748943105340004,
     "rerank_confidence": 0.4003326210655055,
-    "consistency_confidence": 1.0,
-    "combined_confidence": 0.5892740173729685,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.5226073507063018,
     "is_correct": false
   },
   {
@@ -218,12 +218,12 @@
       "Scholars and observers",
       "Islamism"
     ],
-    "system_answer": "",
+    "system_answer": "supporters of islamism",
     "retrieval_confidence": 0.3913949504494667,
     "rerank_confidence": 0.5494667150016975,
-    "consistency_confidence": 0.4,
-    "combined_confidence": 0.4469538884837214,
-    "is_correct": false
+    "consistency_confidence": 0.2,
+    "combined_confidence": 0.3802872218170547,
+    "is_correct": true
   },
   {
     "question": "What is operated by Academic Colleges Group in Wanganui?",
@@ -243,8 +243,8 @@
     "system_answer": "i cannot answer this from given passage",
     "retrieval_confidence": 0.24503796640783548,
     "rerank_confidence": 0.6909771600821188,
-    "consistency_confidence": 1.0,
-    "combined_confidence": 0.6453383754966514,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.5786717088299848,
     "is_correct": true
   },
   {
@@ -269,8 +269,8 @@
     "system_answer": "i cannot answer this from given passage",
     "retrieval_confidence": 0.4766608774662018,
     "rerank_confidence": 0.5094968865157208,
-    "consistency_confidence": 1.0,
-    "combined_confidence": 0.6620525879939742,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.5287192546606408,
     "is_correct": true
   }
 ]
