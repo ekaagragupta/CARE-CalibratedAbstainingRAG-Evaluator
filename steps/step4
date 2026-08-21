@@ -1,0 +1,151 @@
+## Step 4: Generation Self-Consistency — Confidence Signal #3
+
+### The core idea
+Signals #1 and #2 tell us about the *retrieval* — did we find good passages. But even with great passages, the LLM can still generate a wrong or hedged answer (bad reasoning, ambiguous question, passage doesn't actually resolve it clearly). This signal probes the **generation** step itself, independent of retrieval quality.
+
+**The technique:** ask the LLM to answer the *same* question from the *same* retrieved context multiple times (say, 5 times), with some randomness turned on (`temperature > 0`), then measure how much those 5 answers agree with each other.
+
+**Why this works, intuitively:** if the retrieved context clearly and unambiguously supports one answer, the model will land on that same answer almost every time, even with randomness — there's only one reasonable thing to say. If the context is ambiguous, insufficient, or the question is genuinely hard to resolve from it, different sampling runs will produce *different* answers, because the model is essentially guessing/interpolating differently each time. **Agreement across samples is a proxy for how "forced" versus how "improvised" the answer is.**
+
+This is a real, published technique — it's the core idea behind "self-consistency" prompting (Wang et al.) and is used in several hallucination-detection papers (e.g. SelfCheckGPT). Good to know that name if asked — it signals you're aware of the literature, not reinventing on your own in a vacuum.
+
+### The trade-off you must be upfront about
+This is the **most expensive signal by far** — 5 LLM calls per question instead of 1, meaning 5x the latency and 5x the API cost for every single query the system answers. That's a real, material cost. In a production system, you'd want this signal only when the first two signals are already borderline (i.e. skip the expensive check when retrieval is already very confident or very clearly bad) — that's a legitimate optimization to mention as "future work" or even implement if time allows.
+
+**Interview-ready trade-off statement:** *"Self-consistency is the most expensive of my three signals — 5x the generation cost per query — so in a production setting I'd gate it behind the first two cheaper signals, only sampling multiple generations when retrieval confidence is ambiguous. For this project I run it unconditionally to build a clean dataset for calibration validation, but I'm aware of — and can describe — the cost-saving version."*
+
+### How do we actually measure "agreement" between free-text answers?
+This is the trickiest design decision in this step. A few options, in increasing sophistication:
+
+1. **Exact string match** — cheapest, but brittle ("France" vs "france" vs "It's France" would count as different).
+2. **Normalized string match** (lowercase, strip punctuation/articles) — better, this is actually the standard approach used in QA benchmarks like SQuAD itself for scoring.
+3. **Embedding similarity between answers** — reuse our Step 1 embedding model on the 5 generated answers themselves, and measure how tightly clustered they are in vector space. More robust to paraphrasing ("France" vs "It is located in France" would score as similar).
+
+We'll implement **option 2 (normalized match) as the primary metric**, since it's simple, standard, and directly explainable — and mention option 3 as a natural upgrade. The self-consistency score will simply be: **(number of samples matching the majority answer) / (total samples)**.
+
+### Technologies for this step
+| Tool | Purpose | Why this one |
+|---|---|---|
+| `groq` Python SDK | Sends chat completion requests to Groq's API | Groq's own official client — thin wrapper over a standard chat-completions style API, fast inference, generous free tier |
+| `os` (env var) | Holds your API key | Standard practice — never hardcode API keys in source, always load from environment |
+| `collections.Counter` | Counts occurrences of normalized answers | Standard library tool for exactly this "which value appears most often" task |
+
+### Setup you need before running this
+Get a free API key from console.groq.com, then set it as an environment variable:
+```bash
+export GROQ_API_KEY="your-key-here"
+```
+(On Windows, use `set GROQ_API_KEY=your-key-here` or set it via System Environment Variables.)
+
+Add to `requirements.txt`:
+```
+groq==0.9.0
+```
+
+### Code for this step
+
+```python
+# step4_generation.py
+
+import os
+import re
+from collections import Counter
+from groq import Groq
+from retrieval import retrieve
+from reranker import rerank  # adjust import name to match your Step 3 filename
+
+client = Groq(api_key=os.environ["GROQ_API_KEY"])
+
+MODEL_NAME = "llama-3.1-8b-instant"  # small, fast, cheap — fine for this task
+
+
+def generate_answer(query, context_passage, temperature=0.7):
+    """
+    Asks the LLM to answer the query using ONLY the given passage as context.
+    temperature > 0 introduces randomness — necessary for self-consistency
+    sampling to produce genuinely different answers across calls.
+    """
+    prompt = f"""Answer the question using ONLY the information in the passage below.
+If the passage does not contain the answer, say "I cannot answer this from the given passage."
+Keep your answer short — a few words or one sentence, no explanation.
+
+Passage: {context_passage}
+
+Question: {query}
+
+Answer:"""
+
+    response = client.chat.completions.create(
+        model=MODEL_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=temperature,
+        max_tokens=50,
+    )
+    return response.choices[0].message.content.strip()
+
+
+def normalize_answer(text):
+    """
+    Standard QA-style normalization: lowercase, strip punctuation and
+    articles, collapse whitespace. This is the same normalization SQuAD's
+    own official evaluation script uses, so it's a well-established choice,
+    not something ad hoc.
+    """
+    text = text.lower()
+    text = re.sub(r"\b(a|an|the)\b", " ", text)
+    text = re.sub(r"[^\w\s]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def self_consistency_confidence(query, context_passage, n_samples=5):
+    """
+    Samples n_samples answers from the LLM at temperature > 0, normalizes
+    them, and returns the fraction that agree with the majority answer.
+    High agreement = high confidence; scattered answers = low confidence.
+    """
+    raw_answers = [generate_answer(query, context_passage) for _ in range(n_samples)]
+    normalized = [normalize_answer(a) for a in raw_answers]
+
+    counts = Counter(normalized)
+    majority_answer, majority_count = counts.most_common(1)[0]
+
+    consistency_score = majority_count / n_samples
+
+    return {
+        "raw_answers": raw_answers,
+        "majority_answer": majority_answer,
+        "consistency_confidence": consistency_score
+    }
+
+
+if __name__ == "__main__":
+    test_queries = [
+        "In what country is Normandy located?",
+        "What river runs through Paris?",
+        "What is the recommended dosage of ibuprofen for a dog?",
+        "purple elephant quantum sandwich Tuesday",
+    ]
+
+    for q in test_queries:
+        retrieval_result = retrieve(q, k=5)
+        top_passage = retrieval_result["passages"][0]  # use best-retrieved passage as context
+
+        result = self_consistency_confidence(q, top_passage, n_samples=5)
+
+        print(f"\nQuery: {q}")
+        print(f"Top passage used: {top_passage[:150]}...")
+        print(f"Raw answers: {result['raw_answers']}")
+        print(f"Majority answer: '{result['majority_answer']}'")
+        print(f"Self-consistency confidence: {result['consistency_confidence']:.2f}")
+```
+
+### What you should be able to explain about each part
+- **Why `temperature=0.7` and not `0`** — temperature 0 would make the model nearly deterministic, defeating the whole point; we *need* some randomness to see if the model's answer is "forced" by strong evidence or wanders when evidence is weak.
+- **Why the prompt explicitly says "answer ONLY from the passage" and gives an explicit fallback phrase** — this constrains the model to a RAG-appropriate behavior (grounded in context, not general knowledge) and gives it a legitimate way to signal "the passage doesn't help," which itself is useful data.
+- **Why normalization matters before comparing answers** — "France" and "france." need to count as the same answer; without normalization, trivial formatting differences would masquerade as disagreement.
+- **Why we use the top-1 retrieved passage specifically** — this ties generation confidence to the same passage retrieval already selected as best, keeping the pipeline coherent (we're not introducing a new, separate context-selection decision here).
+
+---
+
+Set up your Groq API key, run this, and paste the output. I expect (and want you to check): does Normandy produce 5 near-identical answers (high consistency), while gibberish produces 5 different non-answers or hedges (low consistency)? Let me know what you get.

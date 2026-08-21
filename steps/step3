@@ -1,0 +1,110 @@
+## Step 3: Cross-Encoder Reranking — Confidence Signal #2
+
+### Why we need a second signal at all
+Signal #1 (score gap + top score) comes from the **bi-encoder** — the same `all-MiniLM-L6-v2` model that embedded passages independently of the query, ahead of time, then compared them via a simple dot product. That independence is exactly what makes it fast (you can index a million passages once and search them in milliseconds) — but it's also exactly what makes it a weaker judge of *true* relevance: the model never actually looked at the query and passage *together*. It just compared two pre-computed points in vector space.
+
+A **cross-encoder** does the opposite trade: it takes the query and a candidate passage *together*, as one combined input, and directly outputs a relevance score. Because it sees both texts jointly, it can catch relevance nuances a bi-encoder misses (e.g. word-order-sensitive meaning, negation, entity matching) — but it's far more expensive, since it can't be pre-computed; every query-passage pair has to be scored fresh. This is precisely why cross-encoders are used for *reranking* a small shortlist (our top-5 or top-10 from FAISS), never for searching the full corpus.
+
+**This is a standard, real production pattern** — you should say this explicitly in an interview: *"I used a two-stage retrieve-then-rerank architecture, which is the standard approach in production IR/RAG systems (bi-encoder for fast recall over the full corpus, cross-encoder for precise reranking over a small candidate set) — not something I invented, but a well-established trade-off between speed and accuracy."*
+
+### Why this gives us an *independent* confidence signal, not a redundant one
+This is the important conceptual point, and it's exactly why we're building this as Signal #2 rather than just "a better retriever." If the bi-encoder and cross-encoder **agree** — both think the same passage is clearly the best — that's two independent models converging on the same answer, which is stronger evidence than either alone. If they **disagree** (e.g. bi-encoder confidently ranks passage A first, but the cross-encoder ranks passage B much higher), that disagreement itself is a red flag: it suggests the query is ambiguous or borderline, and the system should be less confident even though the *first* signal alone looked fine. Multiple independent signals catching different failure modes is the actual intellectual core of the whole project.
+
+### Technologies for this step
+| Tool | Purpose | Why this one |
+|---|---|---|
+| `CrossEncoder` class from `sentence-transformers` | Loads and runs cross-encoder models | Same library as Step 1/2, so no new dependency category — just a different model class |
+| `cross-encoder/ms-marco-MiniLM-L-6-v2` | The specific pretrained cross-encoder | Trained on MS MARCO (a large real-world query-passage relevance dataset), small enough (~80MB) to run fast on CPU — again respecting your no-GPU constraint |
+
+### What the reranker confidence signal will be
+Same idea as Step 2, but on the cross-encoder's own score distribution: run the cross-encoder on our top-5 FAISS candidates, get 5 new relevance scores, and compute a **gap + top-score combination** on *those* — reusing the `compute_retrieval_confidence()` logic conceptually, since the underlying question ("is there a clear winner, or is it a toss-up") is identical, just applied to a different model's scores.
+
+### Code for this step
+
+```python
+# step3_reranker.py
+
+from sentence_transformers import CrossEncoder
+from retrieval import retrieve, compute_retrieval_confidence  # reuse Step 2's pieces
+
+# Load the cross-encoder once, at module level — same pattern as the bi-encoder in Step 2.
+reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+
+
+def rerank(query, retrieval_result):
+    """
+    Takes the output of retrieve() (query + top-k passages) and reranks them
+    with a cross-encoder. Returns reranked passages + a second, independent
+    confidence signal based on the cross-encoder's own score distribution.
+    """
+    passages = retrieval_result["passages"]
+
+    # Cross-encoder needs explicit (query, passage) PAIRS as input — this is the
+    # key structural difference from the bi-encoder, which embeds query and
+    # passage SEPARATELY. Here they're fed in together, one pair per candidate.
+    pairs = [[query, p] for p in passages]
+    rerank_scores = reranker.predict(pairs)  # returns a raw relevance score per pair
+
+    # Sort passages by the NEW cross-encoder scores, not the original FAISS order.
+    ranked = sorted(zip(passages, rerank_scores), key=lambda x: x[1], reverse=True)
+    reranked_passages = [p for p, s in ranked]
+    sorted_scores = [float(s) for p, s in ranked]
+
+    # Cross-encoder scores aren't bounded in [0,1] like our normalized cosine
+    # similarities were — they're raw logits, which can be negative. Our
+    # confidence formula assumes scores[0] > 0, so we need to be careful here.
+    rerank_confidence = compute_rerank_confidence(sorted_scores)
+
+    return {
+        "query": query,
+        "reranked_passages": reranked_passages,
+        "rerank_scores": sorted_scores,
+        "rerank_confidence": rerank_confidence
+    }
+
+
+def compute_rerank_confidence(scores, gap_weight=0.5, min_score_weight=0.5):
+    """
+    Same conceptual formula as Step 2's confidence, but adapted for
+    cross-encoder scores, which can be negative (unlike our normalized
+    cosine similarities). We apply a sigmoid to squash raw logits into
+    (0,1) before combining, so the formula's assumptions still hold.
+    """
+    if len(scores) < 2:
+        return 0.0
+
+    import math
+    def sigmoid(x):
+        return 1 / (1 + math.exp(-x))
+
+    squashed = [sigmoid(s) for s in scores]
+    top_score = squashed[0]
+    score_gap = (squashed[0] - squashed[1]) / squashed[0] if squashed[0] > 0 else 0.0
+
+    return float((gap_weight * score_gap) + (min_score_weight * top_score))
+
+
+if __name__ == "__main__":
+    test_queries = [
+        "In what country is Normandy located?",
+        "What river runs through Paris?",
+        "What is the recommended dosage of ibuprofen for a dog?",
+        "purple elephant quantum sandwich Tuesday",
+    ]
+
+    for q in test_queries:
+        retrieval_result = retrieve(q, k=5)
+        rerank_result = rerank(q, retrieval_result)
+
+        print(f"\nQuery: {q}")
+        print(f"Bi-encoder confidence:  {retrieval_result['retrieval_confidence']:.3f}")
+        print(f"Cross-encoder confidence: {rerank_result['rerank_confidence']:.3f}")
+        print(f"Rerank scores: {[round(s, 3) for s in rerank_result['rerank_scores']]}")
+```
+
+### The one new concept you must be able to explain clearly: the sigmoid squashing
+Cross-encoder models typically output **raw, unbounded logits** — not normalized similarities like our cosine scores were. A logit could be -3.2 or +5.7; there's no fixed [0,1] range. Since our confidence formula assumes scores behave like probabilities/similarities (roughly comparable, ideally positive), we pass each raw score through a **sigmoid function** (`1 / (1 + e^-x)`), which squashes any real number into the range (0, 1) — very negative numbers approach 0, very positive numbers approach 1, and 0 maps to 0.5. This is the same function used at the output layer of binary classifiers, so if asked "why sigmoid," the honest answer is: *"It's the standard way to convert an unbounded real-valued score into something that behaves like a probability, which is a requirement my confidence formula has but raw cross-encoder logits don't naturally satisfy."*
+
+---
+
+Run this and paste the output — I want to see whether bi-encoder and cross-encoder confidence *agree* on Normandy/Paris being high and ibuprofen/gibberish being low, or whether they disagree anywhere (which would itself be an interesting, explainable finding). Let me know once you've run it, or if anything about the cross-encoder concept needs more unpacking before you try it.
