@@ -118,4 +118,8 @@ if __name__ == "__main__":
         print("    the fix improved average calibration at the cost of discriminative power.")
 
         """
-        Platt scaling reduced ECE from 0.155 to 0.004, but at the cost of sharpness — standard deviation dropped from 0.131 to 0.031, meaning the recalibrated scores lost most of their ability to distinguish confident from uncertain cases. This is a known failure mode of calibration methods on small datasets: ECE alone doesn't capture whether a confidence score remains useful for decision-making. Given only 76 labeled examples, I'd want a substantially larger eval set (200+) before trusting a learned recalibration — in the meantime, the raw combined confidence, despite its underconfidence bias, is actually the more practically useful signal for abstention decisions, since it still meaningfully separates cases"""
+        Platt scaling reduced ECE from 0.155 to 0.004, but at the cost of sharpness — standard deviation dropped from 0.131 to 0.031, meaning the 
+        recalibrated scores lost most of their ability to distinguish confident from uncertain cases. This is a known failure mode of calibration 
+        methods on small datasets: ECE alone doesn't capture whether a confidence score remains useful for decision-making. Given only 76 labeled
+          examples, I'd want a substantially larger eval set (200+) before trusting a learned recalibration — in the meantime, the raw combined confidence,
+            despite its underconfidence bias, is actually the more practically useful signal for abstention decisions, since it still meaningfully separates cases"""
