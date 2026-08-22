@@ -109,3 +109,8 @@ def run_eval(n_questions=100, eval_set_path="eval_set.json", output_path="eval_r
 
 if __name__ == "__main__":
     run_eval(n_questions=100, eval_set_path="eval_set.json", output_path="eval_results.json")
+
+    """
+    Stopping here and using these 76 results for futher steps. 
+    76 is a reasonable size for a reliability diagram/ECE calculation 
+     kyuki i have to avoid burning more quota chasing a round number."""
