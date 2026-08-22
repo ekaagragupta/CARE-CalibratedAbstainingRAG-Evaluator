@@ -12,7 +12,6 @@ This learns just 2 parameters (a and b). With only 76 examples, 2 parameters is
  Why this specific fix (Platt scaling) works conceptually
 It's fitting a monotonic S-curve correction on top of your existing score — it can stretch, compress, or shift your confidence values, but it can't reorder them (a question your system was more confident about before recalibration stays more confident after). That's important: recalibration should correct the scale, not change which questions the system trusts more relative to each other — that ordering came from real signal (retrieval quality, agreement, etc.) and shouldn't be disturbed.
 """
-# step7b_recalibrate.py
 
 import json
 import numpy as np
@@ -45,10 +44,19 @@ def apply_recalibration(results, calibrator):
     """
     for r in results:
         X = np.array([[r["combined_confidence"]]])
-        # predict_proba returns [P(class=0), P(class=1)] — we want P(correct)=P(class=1)
         corrected = calibrator.predict_proba(X)[0][1]
         r["recalibrated_confidence"] = float(corrected)
     return results
+
+
+def compute_sharpness(confidences):
+    """
+    Sharpness: how spread out the confidence scores are. A low standard
+    deviation means predictions cluster near one value regardless of the
+    actual question — i.e., the score carries little discriminative
+    information, even if it happens to be well-calibrated on average.
+    """
+    return float(np.std(confidences))
 
 
 if __name__ == "__main__":
@@ -62,12 +70,9 @@ if __name__ == "__main__":
 
     results = apply_recalibration(results, calibrator)
 
-    # Save the recalibrated results — new file, keeping the original untouched
     with open("eval_results_recalibrated.json", "w") as f:
         json.dump(results, f, indent=2)
 
-    # Re-run the SAME reliability diagram analysis, but on recalibrated scores
-    # We temporarily rename the field so we can reuse compute_reliability_diagram as-is
     results_for_diagram = [
         {**r, "combined_confidence": r["recalibrated_confidence"]}
         for r in results
@@ -95,3 +100,22 @@ if __name__ == "__main__":
         bin_edges, bin_confidences, bin_accuracies, bin_counts, ece,
         save_path="reliability_diagram_recalibrated.png"
     )
+
+    # --- Sharpness comparison ---
+    raw_confidences = [r["combined_confidence"] for r in results]
+    recalibrated_confidences = [r["recalibrated_confidence"] for r in results]
+
+    raw_sharpness = compute_sharpness(raw_confidences)
+    recalibrated_sharpness = compute_sharpness(recalibrated_confidences)
+
+    print(f"\n--- Sharpness comparison ---")
+    print(f"Raw confidence:          std = {raw_sharpness:.4f}  (range: {min(raw_confidences):.3f}-{max(raw_confidences):.3f})")
+    print(f"Recalibrated confidence: std = {recalibrated_sharpness:.4f}  (range: {min(recalibrated_confidences):.3f}-{max(recalibrated_confidences):.3f})")
+
+    if recalibrated_sharpness < raw_sharpness * 0.5:
+        print("\n  Recalibration significantly reduced sharpness — confidence scores")
+        print("    are now much less spread out, even though ECE improved. This means")
+        print("    the fix improved average calibration at the cost of discriminative power.")
+
+        """
+        Platt scaling reduced ECE from 0.155 to 0.004, but at the cost of sharpness — standard deviation dropped from 0.131 to 0.031, meaning the recalibrated scores lost most of their ability to distinguish confident from uncertain cases. This is a known failure mode of calibration methods on small datasets: ECE alone doesn't capture whether a confidence score remains useful for decision-making. Given only 76 labeled examples, I'd want a substantially larger eval set (200+) before trusting a learned recalibration — in the meantime, the raw combined confidence, despite its underconfidence bias, is actually the more practically useful signal for abstention decisions, since it still meaningfully separates cases"""
