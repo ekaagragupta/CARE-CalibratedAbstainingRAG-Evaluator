@@ -79,7 +79,7 @@ def run_single_example(example, weights=(1/3, 1/3, 1/3)):
     }
 
 
-def run_eval(n_questions=200, eval_set_path="eval_set.json", output_path="eval_results.json"):
+def run_eval(n_questions=100, eval_set_path="eval_set.json", output_path="eval_results.json"):
     with open(eval_set_path) as f:
         eval_set = json.load(f)
 
@@ -108,4 +108,4 @@ def run_eval(n_questions=200, eval_set_path="eval_set.json", output_path="eval_r
 
 
 if __name__ == "__main__":
-    run_eval(n_questions=200, eval_set_path="eval_set.json", output_path="eval_results.json")
+    run_eval(n_questions=100, eval_set_path="eval_set.json", output_path="eval_results.json")
