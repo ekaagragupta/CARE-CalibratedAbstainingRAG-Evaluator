@@ -151,3 +151,6 @@ if __name__ == "__main__":
 ---
 
 Run this and paste the full output (the bin-by-bin printout and the ECE value) — I want to see the actual shape of your calibration before we interpret it together. Given you have real, hard-won data with a documented self-consistency-vs-abstention nuance already in hand, this result should tell a genuinely interesting story either way.
+
+
+
