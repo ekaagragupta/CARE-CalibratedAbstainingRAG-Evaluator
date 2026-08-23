@@ -1,0 +1,1106 @@
+[
+  {
+    "question": "Where did Korea border Kublai's territory?",
+    "is_answerable": true,
+    "gold_answers": [
+      "northeast",
+      "northeast",
+      "the northeast"
+    ],
+    "system_answer": "northeast border",
+    "retrieval_confidence": 0.3799768090248108,
+    "rerank_confidence": 0.8744702168986148,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.6848156753078085,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What is Fe2O?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3306996487081051,
+    "rerank_confidence": 0.4561069299666544,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.5956021928915864,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What was Apple Talk ",
+    "is_answerable": true,
+    "gold_answers": [
+      "a proprietary suite of networking protocols developed by Apple Inc. in 1985",
+      "a proprietary suite of networking protocols developed by Apple Inc",
+      "proprietary suite of networking protocols"
+    ],
+    "system_answer": "proprietary suite of networking protocols developed by apple inc for macintosh computers",
+    "retrieval_confidence": 0.6069681942462921,
+    "rerank_confidence": 0.9991281316548393,
+    "consistency_confidence": 0.2,
+    "combined_confidence": 0.6020321086337104,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What was the very first television station to broadcast in Fresno?",
+    "is_answerable": true,
+    "gold_answers": [
+      "KMJ-TV",
+      "KMJ-TV",
+      "KMJ-TV"
+    ],
+    "system_answer": "kmjtv",
+    "retrieval_confidence": 0.3690607063472271,
+    "rerank_confidence": 0.905372245034727,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.758144317127318,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What must the adoption of laws which will have legal effect in the EU have?",
+    "is_answerable": true,
+    "gold_answers": [
+      "a proper legal basis",
+      "a proper legal basis",
+      "a proper legal basis"
+    ],
+    "system_answer": "proper legal basis",
+    "retrieval_confidence": 0.3009828208014369,
+    "rerank_confidence": 0.5223350571187423,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6077726259733931,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What was believed to be the cause of devastation to the civilization?",
+    "is_answerable": true,
+    "gold_answers": [
+      "diseases from Europe",
+      "the spread of diseases from Europe",
+      "spread of diseases from Europe"
+    ],
+    "system_answer": "spread of diseases from europe such as smallpox",
+    "retrieval_confidence": 0.22000331431627274,
+    "rerank_confidence": 0.339033745536014,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.5196790199507622,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What was the name of the first Huguenot outpost in South Carolina?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Charlesfort",
+      "Charlesfort",
+      "Charlesfort"
+    ],
+    "system_answer": "charlesfort",
+    "retrieval_confidence": 0.34492796659469604,
+    "rerank_confidence": 0.5430879295238952,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6293386320395304,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "Besides the analytic property of Goldbach's conjecture, what other property of Goldbach's conjecture does number theory focus on?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "its algebraic aspects",
+    "retrieval_confidence": 0.33646923225023784,
+    "rerank_confidence": 0.5572295647212084,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.43123293232381543,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What amount of the worlds carbon is stored in the Amazon forest?",
+    "is_answerable": true,
+    "gold_answers": [
+      "10% of the carbon stores",
+      "10%",
+      "10%"
+    ],
+    "system_answer": "about 11 10\u00b9\u00b9 metric tonnes of carbon",
+    "retrieval_confidence": 0.4795079454779625,
+    "rerank_confidence": 0.9270236217282877,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6688438557354166,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What alternative to ARPANET was developed? ",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "cyclades packetswitching network",
+    "retrieval_confidence": 0.3028954267501831,
+    "rerank_confidence": 0.6748188613946589,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.4592380960482806,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What was the purpose of the suite developed in 1985? ",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.2656121402978897,
+    "rerank_confidence": 0.26861362237777836,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.511408587558556,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Who lead the school back to leading research institution in 2oth century?",
+    "is_answerable": true,
+    "gold_answers": [
+      "James Bryant Conant",
+      "James Bryant Conant",
+      "James Bryant Conant"
+    ],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.2558967862278223,
+    "rerank_confidence": 0.24005063884848113,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.4986491416921011,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Which of the tributaries in Germany contributes most? ",
+    "is_answerable": true,
+    "gold_answers": [
+      "Moselle",
+      "Neckar",
+      "Neckar"
+    ],
+    "system_answer": "moselle",
+    "retrieval_confidence": 0.29549090284854174,
+    "rerank_confidence": 0.839601908737563,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.5783642705287015,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "The French and Indian War was the New World aspect of what European conflict?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Seven Years' War",
+      "Seven Years' War",
+      "Seven Years' War"
+    ],
+    "system_answer": "seven years war",
+    "retrieval_confidence": 0.4468098059296608,
+    "rerank_confidence": 0.6021847429884437,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6829981829727014,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What grew on a global scale as a result of imperialism?",
+    "is_answerable": true,
+    "gold_answers": [
+      "the world's economy",
+      "economy",
+      "economy",
+      "world's economy",
+      "world's economy"
+    ],
+    "system_answer": "technologies and ideas",
+    "retrieval_confidence": 0.36748943105340004,
+    "rerank_confidence": 0.4003326210655055,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.5892740173729685,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "The idea that Islam can be apolitical isn't able to be embraced by whom?",
+    "is_answerable": true,
+    "gold_answers": [
+      "its supporters",
+      "Scholars and observers",
+      "Islamism"
+    ],
+    "system_answer": "supporters of islamism",
+    "retrieval_confidence": 0.3913949504494667,
+    "rerank_confidence": 0.5494667150016975,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.5802872218170547,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What is operated by Academic Colleges Group in Wanganui?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3928654193878174,
+    "rerank_confidence": 0.9972672757280465,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7967108983719546,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What is the weight of a bushel of engines in pounds?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.24503796640783548,
+    "rerank_confidence": 0.6909771600821188,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.5786717088299848,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What is the problem attributed to defining if two finite graphs are isomorphic?",
+    "is_answerable": true,
+    "gold_answers": [
+      "The graph isomorphism problem",
+      "graph isomorphism",
+      "The graph isomorphism problem"
+    ],
+    "system_answer": "graph isomorphism problem",
+    "retrieval_confidence": 0.5882347226142883,
+    "rerank_confidence": 0.5783831255962891,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7222059494035258,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What is the United State's second-busiest commercial port?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.4766608774662018,
+    "rerank_confidence": 0.5094968865157208,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.4620525879939742,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "When was the Model United Nations team ranked second in North America?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.29401858896017075,
+    "rerank_confidence": 0.9955459208802742,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7631881699468149,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "Which plateau is the left part of Vistula on?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "moraine plateau",
+    "retrieval_confidence": 0.33470869762822986,
+    "rerank_confidence": 0.49915275357695094,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.47795381706839357,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What alumni wrote \"The Closing of the American Mind\"?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Allan Bloom",
+      "Allan Bloom",
+      "Allan Bloom"
+    ],
+    "system_answer": "allan bloom",
+    "retrieval_confidence": 0.41819755733013153,
+    "rerank_confidence": 0.9998054165822918,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.806000991304141,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What are common outcomes of a project?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "structural collapse cost overruns and litigation",
+    "retrieval_confidence": 0.2684122156351805,
+    "rerank_confidence": 0.907157164913005,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.5918564601827284,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What evolved 5.3 billion years ago?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.23835505545139313,
+    "rerank_confidence": 0.9708199126646919,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7363916560386949,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What was the objective of Royal Proclamation of 1763?",
+    "is_answerable": true,
+    "gold_answers": [
+      "outlined the division and administration of the newly conquered territory",
+      "outlined the division and administration of the newly conquered territory",
+      "division and administration of the newly conquered territory",
+      "division and administration",
+      "the division and administration of the newly conquered territory"
+    ],
+    "system_answer": "to divide and administer newly conquered territory and reserve lands west of appalachians for indigenous peoples",
+    "retrieval_confidence": 0.4346735328435898,
+    "rerank_confidence": 0.9756442404204995,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.7367725910880297,
+    "is_correct": false,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "A small fraction of the cold water flow from Lake Constance goes to what other lake?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Lake \u00dcberlingen",
+      "Lake \u00dcberlingen",
+      "Lake \u00dcberlingen"
+    ],
+    "system_answer": "lake \u00fcberlingen",
+    "retrieval_confidence": 0.4419731944799423,
+    "rerank_confidence": 0.7443259022403141,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7287663655734188,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "To what pathogen that causes gas gangrene is oxygen poisonous?",
+    "is_answerable": true,
+    "gold_answers": [
+      "anaerobic bacteria",
+      "anaerobic bacteria",
+      "anaerobic bacteria",
+      "anaerobic bacteria",
+      "anaerobic bacteria"
+    ],
+    "system_answer": "anaerobic bacteria",
+    "retrieval_confidence": 0.40446389466524124,
+    "rerank_confidence": 0.9496484654347925,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6513707867000111,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "In what year did Huguenot refugees first settle in Norwich?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3774337135255337,
+    "rerank_confidence": 0.5353026618103587,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.5709121251119641,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What force is weaker than gravity over short distances?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.24670473486185074,
+    "rerank_confidence": 0.5090864706810677,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.45193040184763944,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Why did OPEC raise the price of oil to $5.11?",
+    "is_answerable": true,
+    "gold_answers": [
+      "In response to American aid to Israel",
+      "In response to American aid to Israel",
+      "In response to American aid to Israel",
+      "In response to American aid to Israel",
+      "American aid to Israel"
+    ],
+    "system_answer": "because of american aid to israel",
+    "retrieval_confidence": 0.35171349346637726,
+    "rerank_confidence": 0.5129921312234312,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.4215685415632695,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What memoir did William Smith write that was published in the Society's Transactions?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.16167303919792175,
+    "rerank_confidence": 0.1226098421004467,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.4280942937661228,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Packet Switching contrast with what other principal ",
+    "is_answerable": true,
+    "gold_answers": [
+      "circuit switching",
+      "circuit switching",
+      "circuit switching"
+    ],
+    "system_answer": "circuit switching",
+    "retrieval_confidence": 0.40372931212186813,
+    "rerank_confidence": 0.7366726727281614,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7134673282833431,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "Along what geographic feature are nine residential houses located?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Charles River",
+      "Charles River",
+      "Charles River"
+    ],
+    "system_answer": "charles river",
+    "retrieval_confidence": 0.3482753187417984,
+    "rerank_confidence": 0.711176384429041,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.553150567723613,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What happens when bathocyroe and ocyropsis clap their lobes together?",
+    "is_answerable": true,
+    "gold_answers": [
+      "jet of expelled water drives them backwards very quickly.",
+      "jet of expelled water drives them backwards very quickly",
+      "expelled water drives them backwards very quickly"
+    ],
+    "system_answer": "they jet backward quickly using expelled water to escape",
+    "retrieval_confidence": 0.30595654249191284,
+    "rerank_confidence": 0.9835598345525427,
+    "consistency_confidence": 0.2,
+    "combined_confidence": 0.49650545901481846,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Where are the Harvard medical, Dental and school of Public Health located?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Longwood Medical and Academic Area",
+      "Longwood Medical and Academic Area",
+      "Longwood Medical and Academic Area"
+    ],
+    "system_answer": "in longwood medical and academic area about 33 mi southwest of downtown boston and south of cambridge",
+    "retrieval_confidence": 0.32543850410729647,
+    "rerank_confidence": 0.5001135800496374,
+    "consistency_confidence": 0.2,
+    "combined_confidence": 0.3418506947189779,
+    "is_correct": true,
+    "decision": "ABSTAIN"
+  },
+  {
+    "question": "The Maroons compete in what league division?",
+    "is_answerable": true,
+    "gold_answers": [
+      "NCAA's Division III",
+      "NCAA's Division III"
+    ],
+    "system_answer": "ncaa division iii",
+    "retrieval_confidence": 0.39599744975566864,
+    "rerank_confidence": 0.9995951586839817,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.5985308694798834,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Who called for more government oversight into the IPCC?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.2616941084852442,
+    "rerank_confidence": 0.8315942887658139,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6977627990836859,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What was Tymnet",
+    "is_answerable": true,
+    "gold_answers": [
+      "an international data communications network headquartered in San Jose, CA",
+      "an international data communications network",
+      "international data communications network"
+    ],
+    "system_answer": "international data communications network headquartered in san jose ca",
+    "retrieval_confidence": 0.559096097946167,
+    "rerank_confidence": 0.8655156025732338,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.8082039001731336,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What city in Victoria is called the sporting capital of Australia?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Melbourne",
+      "Melbourne",
+      "Melbourne"
+    ],
+    "system_answer": "melbourne",
+    "retrieval_confidence": 0.3581536654382944,
+    "rerank_confidence": 0.5103858489005225,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6228465047796057,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What are some existing facilities?",
+    "is_answerable": true,
+    "gold_answers": [
+      "electrical, water, sewage, phone, and cable facilities",
+      "electrical, water, sewage, phone, and cable",
+      "electrical, water, sewage, phone, and cable facilities"
+    ],
+    "system_answer": "booth school of business campuses in singapore london and chicagos streeterville center in paris centers in beijing new delhi and hong kong",
+    "retrieval_confidence": 0.19126941775903106,
+    "rerank_confidence": 0.09338981038738113,
+    "consistency_confidence": 0.2,
+    "combined_confidence": 0.16155307604880403,
+    "is_correct": false,
+    "decision": "ABSTAIN"
+  },
+  {
+    "question": "The down turned boat skylights are located in what lobby?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.2956194505095482,
+    "rerank_confidence": 0.10171157085936836,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.46577700712297215,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Which reason is given sometimes to plead not guilty involving these matters?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Guilt implies wrong-doing",
+      "Guilt implies wrong-doing",
+      "guilty of doing no wrong",
+      "Guilt implies wrong-doing",
+      "I may have violated some specific laws, but I am guilty of doing no wrong",
+      "I may have violated some specific laws, but I am guilty of doing no wrong"
+    ],
+    "system_answer": "to use trial as forum to inform jury and public of political circumstances and their reasons for breaking law via civil disobedience",
+    "retrieval_confidence": 0.3490731902420521,
+    "rerank_confidence": 0.5720663114257174,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.4403798338892565,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "Which tribes did Genghis Khan unite?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Mongol and Turkic tribes",
+      "Mongol and Turkic tribes",
+      "the Mongol and Turkic tribes"
+    ],
+    "system_answer": "mongol and turkic tribes",
+    "retrieval_confidence": 0.3612580746412277,
+    "rerank_confidence": 0.9308229163936949,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7640269970116408,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "When the Rhine took a right turn what did it create?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.32537030801177025,
+    "rerank_confidence": 0.1171980831214104,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.48085613037772684,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "The term imperialism has never been applied to western countries, and which eastern county?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.34827222488820553,
+    "rerank_confidence": 0.7341104071574924,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6941275440152326,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What did Israel and Syria do to avoid being targeted by the boycott?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "",
+    "retrieval_confidence": 0.2609893009066582,
+    "rerank_confidence": 0.9891989294929676,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6167294101332086,
+    "is_correct": false,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What does  oxygen therapy promote the body to take up?",
+    "is_answerable": true,
+    "gold_answers": [
+      "gaseous oxygen.",
+      "gaseous oxygen",
+      "gaseous oxygen",
+      "oxygen",
+      "gaseous oxygen"
+    ],
+    "system_answer": "oxygen",
+    "retrieval_confidence": 0.47730255872011185,
+    "rerank_confidence": 0.9855651678329651,
+    "consistency_confidence": 0.4,
+    "combined_confidence": 0.6209559088510256,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What does kAp stand for?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.17116812616586685,
+    "rerank_confidence": 0.4819613448550237,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.5510431570069635,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What is used in photosynthesis and released by cellular respiration? ",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "oxygen",
+    "retrieval_confidence": 0.27749852277338505,
+    "rerank_confidence": 0.9546725342384508,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6107236856706119,
+    "is_correct": false,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What event is held at Port Sunshine in Victoria?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.4759799540042877,
+    "rerank_confidence": 0.9811523875280146,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.8190441138441007,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "How was the Dutch name for the Rhine originally spelled? ",
+    "is_answerable": true,
+    "gold_answers": [
+      "Rhijn",
+      "Rhijn",
+      "Rhijn",
+      "Rhijn",
+      "Rhijn"
+    ],
+    "system_answer": "rhijn",
+    "retrieval_confidence": 0.35333373211324215,
+    "rerank_confidence": 0.5590308925588265,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6374548748906895,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": " Who was Ogedei's husband?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.19072747230529785,
+    "rerank_confidence": 0.420556683653107,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.5370947186528016,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "How has this debate been proven?",
+    "is_answerable": true,
+    "gold_answers": [
+      "This debate has proved difficult",
+      "difficult to resolve"
+    ],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.21078061498701572,
+    "rerank_confidence": 0.5929402202534169,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.4679069450801442,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "BQP and QMA are examples of complexity classes most commonly associated with what type of Turing machine?",
+    "is_answerable": true,
+    "gold_answers": [
+      "quantum",
+      "quantum",
+      "quantum"
+    ],
+    "system_answer": "quantum turing machines",
+    "retrieval_confidence": 0.36666850559413433,
+    "rerank_confidence": 0.500645514663285,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.5557713400858064,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "By what process is singlet oxygen made in the tropophere?",
+    "is_answerable": true,
+    "gold_answers": [
+      "photolysis of ozone",
+      "photolysis of ozone",
+      "photolysis of ozone by light of short wavelength",
+      "photolysis of ozone by light of short wavelength",
+      "photolysis"
+    ],
+    "system_answer": "by photolysis of ozone by shortwavelength light",
+    "retrieval_confidence": 0.37005749344825745,
+    "rerank_confidence": 0.9948200894448979,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6549591942977184,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What law connects relative velocities with inertia?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Newton's First",
+      "first law",
+      "Newton's First Law",
+      "First Law",
+      "Newton's First Law"
+    ],
+    "system_answer": "newtons first law of motion",
+    "retrieval_confidence": 0.3032155968248844,
+    "rerank_confidence": 0.9930478342414011,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7654211436887618,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What is the immune system unable to distinguish from healthy tissue?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3608989268541336,
+    "rerank_confidence": 0.8462349979646421,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7357113082729252,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "If q=9 and a=1,2,4,5,7, or 8, how many primes would be in a progression?",
+    "is_answerable": true,
+    "gold_answers": [
+      "infinitely many prime numbers",
+      "infinitely many",
+      "infinite",
+      "infinitely many"
+    ],
+    "system_answer": "infinitely many",
+    "retrieval_confidence": 0.5111779272556305,
+    "rerank_confidence": 0.8841760046036755,
+    "consistency_confidence": 0.8,
+    "combined_confidence": 0.7317846439531019,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "Trotsky thought what was not needed for a true Russian revolution.",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "",
+    "retrieval_confidence": 0.3641146793961525,
+    "rerank_confidence": 0.9729129038678532,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6456758610880019,
+    "is_correct": false,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "How many homes did the Pacific Improvement Corporation build?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.2884533256292343,
+    "rerank_confidence": 0.7702472972397694,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6862335409563345,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "The presence of who is highly likely even in small projects?",
+    "is_answerable": true,
+    "gold_answers": [
+      "the mortgage banker",
+      "mortgage banker",
+      "mortgage banker"
+    ],
+    "system_answer": "mortgage banker",
+    "retrieval_confidence": 0.21745981235289946,
+    "rerank_confidence": 0.9931734580780958,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7368777568103317,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "How many Huguenots were in France in the early 18th century?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.33101656730286777,
+    "rerank_confidence": 0.5035332298873346,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6115165990634008,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What has having an EU Citizenship decreased?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3977884203195572,
+    "rerank_confidence": 0.874563100581288,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7574505069669484,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What process attributes old wealth to those that already have it?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "wealth concentration",
+    "retrieval_confidence": 0.3804691880941391,
+    "rerank_confidence": 0.9832330008902725,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7879007296614704,
+    "is_correct": false,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What countries use a blue stylized A to signify pharmacy?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.5044612288475037,
+    "rerank_confidence": 0.9955361298467806,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.8333324528980948,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What lake contains part of the Rhine Falls?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.35983229242265224,
+    "rerank_confidence": 0.5056654390344303,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.48849924381902743,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What Swiss city was the center of the Calvinist movement?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Geneva",
+      "Geneva",
+      "Geneva"
+    ],
+    "system_answer": "geneva",
+    "retrieval_confidence": 0.32465267181396484,
+    "rerank_confidence": 0.878160635593184,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7342711024690496,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What garden was formally only for royalty?",
+    "is_answerable": true,
+    "gold_answers": [
+      "The Saxon Garden",
+      "Saxon Garden",
+      "The Saxon Garden"
+    ],
+    "system_answer": "saxon garden",
+    "retrieval_confidence": 0.2821717783808708,
+    "rerank_confidence": 0.9214005719601589,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7345241167803431,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "How are erg\u00e4nzungsschulen funded?",
+    "is_answerable": true,
+    "gold_answers": [
+      "tuition",
+      "tuition",
+      "tuition fees"
+    ],
+    "system_answer": "by charging students tuition fees",
+    "retrieval_confidence": 0.4752242788672447,
+    "rerank_confidence": 0.8843451486790499,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.6531898091820981,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "According to reduction, if X and Y can be solved by the same algorithm then X performs what function in relationship to Y?",
+    "is_answerable": true,
+    "gold_answers": [
+      "reduces",
+      "reduces",
+      "X reduces to Y"
+    ],
+    "system_answer": "x reduces to y",
+    "retrieval_confidence": 0.2607056740671396,
+    "rerank_confidence": 0.8185909278789627,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.6930988673153674,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "In what direction does the river system extend?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "west to north",
+    "retrieval_confidence": 0.25329387467354536,
+    "rerank_confidence": 0.4449863146043914,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.4327600630926456,
+    "is_correct": false,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What is the high end of the temperature range in winter?",
+    "is_answerable": true,
+    "gold_answers": [
+      "70",
+      "70",
+      "70"
+    ],
+    "system_answer": "53 f",
+    "retrieval_confidence": 0.2945246631279588,
+    "rerank_confidence": 0.25241653728176006,
+    "consistency_confidence": 0.6,
+    "combined_confidence": 0.38231373346990627,
+    "is_correct": false,
+    "decision": "ABSTAIN"
+  },
+  {
+    "question": "Who was given land by British goovernment for development of Ohio Country?",
+    "is_answerable": true,
+    "gold_answers": [
+      "Ohio Company of Virginia",
+      "Ohio Company of Virginia",
+      "Ohio Company of Virginia",
+      "Ohio Company of Virginia",
+      "Ohio Company"
+    ],
+    "system_answer": "ohio company of virginia",
+    "retrieval_confidence": 0.3484494686126709,
+    "rerank_confidence": 0.812744734687441,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7203980677667039,
+    "is_correct": true,
+    "decision": "ANSWER"
+  },
+  {
+    "question": "What chemical keeps immune cells away from the site of infection?",
+    "is_answerable": false,
+    "gold_answers": [],
+    "system_answer": "i cannot answer this from given passage",
+    "retrieval_confidence": 0.3111835103482008,
+    "rerank_confidence": 0.17407509277997382,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.4950862010427248,
+    "is_correct": true,
+    "decision": "HEDGE"
+  },
+  {
+    "question": "What South African law recognized two types of schools?",
+    "is_answerable": true,
+    "gold_answers": [
+      "South African Schools Act",
+      "South African Schools Act",
+      "South African Schools Act"
+    ],
+    "system_answer": "south african schools act of 1996",
+    "retrieval_confidence": 0.39930396154522896,
+    "rerank_confidence": 0.7648364947692199,
+    "consistency_confidence": 1.0,
+    "combined_confidence": 0.7213801521048162,
+    "is_correct": true,
+    "decision": "ANSWER"
+  }
+]
