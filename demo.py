@@ -1,3 +1,5 @@
+import os
+os.environ["HF_HUB_OFFLINE"] = "1"
 from pipeline import answer_question, DEFAULT_THRESHOLD_HIGH, DEFAULT_THRESHOLD_LOW
 
 def print_result(result):
