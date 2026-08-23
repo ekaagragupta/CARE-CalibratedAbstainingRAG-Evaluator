@@ -11,6 +11,8 @@ This learns just 2 parameters (a and b). With only 76 examples, 2 parameters is
 
  Why this specific fix (Platt scaling) works conceptually
 It's fitting a monotonic S-curve correction on top of your existing score — it can stretch, compress, or shift your confidence values, but it can't reorder them (a question your system was more confident about before recalibration stays more confident after). That's important: recalibration should correct the scale, not change which questions the system trusts more relative to each other — that ordering came from real signal (retrieval quality, agreement, etc.) and shouldn't be disturbed.
+
+low ECE is not sufficient evidence of good calibration on its own — you also need sharpness (also called "refinement"): the confidence scores should actually spread out and separate easy cases from hard ones, not just average out to match the base rate. A model that always predicts "76% confident" on every single question would also get a near-zero ECE on a dataset where 76% of answers are correct — but it would be a useless confidence signal, since it gives you no information to decide which specific answers to trust.
 """
 
 import json
